@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -7,31 +7,48 @@ import {
   InputAdornment,
   IconButton,
   Box,
-
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
 
 import { Search } from '@mui/icons-material';
-import styles from './app-bar.module.css'
-
+import styles from './app-bar.module.css';
+import { searchCity } from '../../store/actions/actions';
 
 const NavBar: FC = () => {
-    const theme = useTheme()
+  const theme = useTheme();
+  const dispatch = useDispatch();
+  const [city, setCity] = useState('');
+  console.log('city >>>', city);
+
+  const onKeyDown = (event:any) => {
+    if (event.key === 'Enter') {
+      dispatch(searchCity(city));
+    }
+  };
+
   return (
-    <AppBar position='fixed'  >
-      <Toolbar sx={{ justifyContent: "space-between"}} >
+    <AppBar position='sticky' color='transparent'>
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
         <Box component='div'>
-          <Typography>Dovar001</Typography>
+          <Typography>001</Typography>
         </Box>
         <Box component='div'>
           <TextField
-          variant='standard'
-          size='medium'
-          className={styles.input}
+            variant='outlined'
+            size='small'
+            className={styles.input}
+            value={city}
+            onKeyDown={onKeyDown}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder='city or country '
             InputProps={{
               endAdornment: (
                 <InputAdornment position='start'>
-                  <IconButton>
+                  <IconButton
+              
+                    onClick={() => dispatch(searchCity(city))}
+                  >
                     <Search />
                   </IconButton>
                 </InputAdornment>
