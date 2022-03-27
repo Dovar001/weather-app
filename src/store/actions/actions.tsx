@@ -6,6 +6,8 @@ import {
   IErrorSwitcherAction,
   IWeatherData,
   IWeatherError,
+  ICity,
+  SEARCH_CITY,
 } from '../types';
 
 export function loaderSwitcher(loaderState: boolean): ILoaderSwitcherAction {
@@ -20,6 +22,13 @@ export function errorSwitcher(errorState: string): IErrorSwitcherAction {
     payload: errorState,
   };
 }
+export function searchCity(city: string): ICity {
+  return {
+    type: SEARCH_CITY,
+    payload: city,
+  };
+}
+
 export const getData = (city: string) => {
   return async (dispatch: any) => {
     dispatch(loaderSwitcher(true));

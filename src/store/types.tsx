@@ -1,6 +1,7 @@
 export const LOADER_SWITCHER = 'LOADER_SWITCHER';
 export const ERROR_SWITCHER = 'ERROR_SWITCHER';
 export const GET_DATA = 'GET_DATA';
+export const SEARCH_CITY = 'SEARCH_CITY';
 
 export interface IWeather {
   id: number;
@@ -62,10 +63,16 @@ export interface IWeatherError {
   message: string;
 }
 
+export interface ICity {
+  type: typeof SEARCH_CITY;
+  payload: string;
+}
+
 export interface IWeatherState {
   isLoading: boolean;
   isError: string;
   data: IWeatherData | null;
+  city: string;
 }
 
 export interface IGetWeatherAction {
@@ -83,4 +90,8 @@ export interface IErrorSwitcherAction {
   payload: string;
 }
 
-export type WeatherAction = IGetWeatherAction | IErrorSwitcherAction | ILoaderSwitcherAction
+export type WeatherAction =
+  | IGetWeatherAction
+  | IErrorSwitcherAction
+  | ICity
+  | ILoaderSwitcherAction;

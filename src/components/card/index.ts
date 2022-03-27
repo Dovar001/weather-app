@@ -1,0 +1,1 @@
+export {CardSingle} from './card'

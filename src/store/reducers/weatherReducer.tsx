@@ -4,29 +4,29 @@ import {
   GET_DATA,
   IWeatherState,
   WeatherAction,
+  SEARCH_CITY
 } from '../types';
 
 const initialState: IWeatherState = {
   isError: '',
   isLoading: false,
-  data:null,
+  data: null,
+  city: '',
 };
 
-function reducer(
-  state = initialState,
-  action: WeatherAction
-): IWeatherState {
+function reducer(state = initialState, action: WeatherAction): IWeatherState {
   switch (action.type) {
     case GET_DATA:
       return {
         data: action.payload,
         isError: '',
         isLoading: false,
+        city: '',
       };
     case LOADER_SWITCHER:
       return {
         ...state,
-        isLoading:action.payload,
+        isLoading: action.payload,
       };
     case ERROR_SWITCHER:
       return {
@@ -34,9 +34,14 @@ function reducer(
         isError: action.payload,
         isLoading: false,
       };
-      default: 
-      return state
+    case SEARCH_CITY:
+      return {
+        ...state,
+        city: action.payload,
+      };
+    default:
+      return state;
   }
 }
 
-export {reducer}
+export { reducer };
