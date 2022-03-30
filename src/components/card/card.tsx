@@ -4,7 +4,7 @@ import styles from './card.module.css';
 const CardSingle: FC<any> = (props) => {
   const time = (props?.dt_txt).slice(10, 16);
   const temp = Math.round(props?.main?.temp - 273);
-  console.log('props  ', props);
+
   return (
     <div className={styles.card}>
       <div className={styles.time}>{time}</div>
@@ -17,6 +17,7 @@ const CardSingle: FC<any> = (props) => {
       </div>
       <div className={styles.desc}>{props?.weather[0]?.main}</div>
     </div>
+
   );
 };
 

@@ -21,7 +21,7 @@ const NavBar: FC = () => {
   const [city, setCity] = useState('');
   console.log('city >>>', city);
 
-  const onKeyDown = (event:any) => {
+  const onKeyDown = (event: any) => {
     if (event.key === 'Enter') {
       dispatch(searchCity(city));
     }
@@ -30,8 +30,9 @@ const NavBar: FC = () => {
   return (
     <AppBar position='sticky' color='transparent'>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
-        <Box component='div'>
-          <Typography>001</Typography>
+        <Box className={styles.container} component='div'>
+          <img className={styles.logo} src='weather-logo.png' alt='' />
+          <Typography>Weather</Typography>
         </Box>
         <Box component='div'>
           <TextField
@@ -45,10 +46,7 @@ const NavBar: FC = () => {
             InputProps={{
               endAdornment: (
                 <InputAdornment position='start'>
-                  <IconButton
-              
-                    onClick={() => dispatch(searchCity(city))}
-                  >
+                  <IconButton onClick={() => dispatch(searchCity(city))}>
                     <Search />
                   </IconButton>
                 </InputAdornment>

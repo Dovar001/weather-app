@@ -1,0 +1,15 @@
+.main{
+    padding: 1rem;
+    margin: 3rem;
+    text-align: center;
+    font-size: 1.3rem;
+    color: rgb(177, 130, 130);
+    border: 1px solid rgb(221, 213, 213);
+    border-radius: 10px;
+}
+
+.city{
+    color: rgb(110, 212, 50);
+    font-size: 2rem;
+    font-weight: bold;
+}

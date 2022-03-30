@@ -1,38 +1,58 @@
-import { Box } from "@mui/material";
-import { useEffect } from "react";
-import {useDispatch,useSelector} from 'react-redux'
-import { NavBar } from "./components/app-bar";
-import { CardSingle } from "./components/card";
-import { Cards } from "./components/cards-container/card-holder";
-import { getData } from "./store/actions/actions";
-import { IWeatherData } from "./store/types";
-
+import { Box, dividerClasses } from '@mui/material';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavBar } from './components/app-bar';
+import { CardSingle } from './components/card';
+import { Cards } from './components/cards-container/card-holder';
+import { getData } from './store/actions/actions';
+import { IWeatherData } from './store/types';
+// import { ErrorPage } from './pages/error';
+import { CityInfo } from './components/city-info';
+import LoadingSpin from 'react-loading-spin';
 
 function App() {
- const dispatch = useDispatch();
- const data:IWeatherData = useSelector((state:any)=> state.weather.data)
- const city:string = useSelector((state:any)=>state.weather.city)
-  
+  const dispatch = useDispatch();
+  const isLoading: boolean = useSelector(
+    (state: any) => state.weather.isLoading
+  );
+  const isError: string = useSelector((state: any) => state.weather.isError);
+  const city: string = useSelector((state: any) => state.weather.city);
 
- useEffect(()=>{
-   dispatch(getData('dushanbe'))
- },[])
+  console.log('isLoading >>>', isLoading);
+  console.log('isError >>>', isError);
 
- useEffect(() => {
-   if(city) {
-     dispatch(getData(city))
-   } 
-  }, [city])
-  
+  useEffect(() => {
+    dispatch(getData('dushanbe'));
+  }, []);
+
+  useEffect(() => {
+    if (city) {
+      dispatch(getData(city));
+    }
+  }, [city]);
 
   return (
-    <div className="App">
+    <div className='App'>
       <div>
         <NavBar />
       </div>
-      <div>
-        <Cards />
-      </div>
+      {isLoading && !isError && (
+        <div style={{ width: '100%', textAlign: 'center', marginTop: '10%' }}>
+          <LoadingSpin />
+        </div>
+      )}
+      {!isLoading && isError &&  <div>error</div> }
+      {/* {!isLoading && isError && <ErrorPage />} */}
+      {!isLoading && !isError && (
+        <div>
+          <div>
+            <CityInfo />
+          </div>
+          <div>
+            <Cards />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

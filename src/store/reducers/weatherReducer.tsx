@@ -4,7 +4,7 @@ import {
   GET_DATA,
   IWeatherState,
   WeatherAction,
-  SEARCH_CITY
+  SEARCH_CITY,
 } from '../types';
 
 const initialState: IWeatherState = {

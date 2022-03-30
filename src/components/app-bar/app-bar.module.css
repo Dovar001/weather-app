@@ -1,0 +1,11 @@
+.logo {
+  width: 60px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(110, 212, 50);
+  font-weight: bold;
+}
