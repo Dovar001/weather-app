@@ -1,4 +1,4 @@
-import { Box, dividerClasses } from '@mui/material';
+import { Box, dividerClasses, Container } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavBar } from './components/app-bar';
@@ -6,7 +6,7 @@ import { CardSingle } from './components/card';
 import { Cards } from './components/cards-container/card-holder';
 import { getData } from './store/actions/actions';
 import { IWeatherData } from './store/types';
-// import { ErrorPage } from './pages/error';
+import { ErrorPage } from './pages/error';
 import { CityInfo } from './components/city-info';
 import LoadingSpin from 'react-loading-spin';
 
@@ -32,27 +32,28 @@ function App() {
   }, [city]);
 
   return (
-    <div className='App'>
+    <div className='App' style={{background:'rgb(245 245 245)'}} >
       <div>
         <NavBar />
       </div>
-      {isLoading && !isError && (
-        <div style={{ width: '100%', textAlign: 'center', marginTop: '10%' }}>
-          <LoadingSpin />
-        </div>
-      )}
-      {!isLoading && isError &&  <div>error</div> }
-      {/* {!isLoading && isError && <ErrorPage />} */}
-      {!isLoading && !isError && (
-        <div>
-          <div>
-            <CityInfo />
+      <Container maxWidth='lg' >
+        {isLoading && !isError && (
+          <div style={{ width: '100%', textAlign: 'center', marginTop: '10%' }}>
+            <LoadingSpin />
           </div>
+        )}
+        {!isLoading && isError && <ErrorPage />}
+        {!isLoading && !isError && (
           <div>
-            <Cards />
+            <div>
+              <CityInfo />
+            </div>
+            <div>
+              <Cards />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </Container>
     </div>
   );
 }

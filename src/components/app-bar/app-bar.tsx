@@ -28,7 +28,7 @@ const NavBar: FC = () => {
   };
 
   return (
-    <AppBar position='sticky' color='transparent'>
+    <AppBar elevation={1} position='fixed' color='default'  >
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         <Box className={styles.container} component='div'>
           <img className={styles.logo} src='weather-logo.png' alt='' />
