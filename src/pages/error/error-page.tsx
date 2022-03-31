@@ -6,9 +6,11 @@ const ErrorPage: FC = () => {
   const error: string = useSelector((state: any) => state.weather.isError);
   return (
     <div className={styles.main}>
-      <div className={styles.ops}>Oops!</div>
-      <div className={styles.error}>Error happaned</div>
-      <div className={styles.errorText}>{error}</div>
+      <div>
+        <div className={styles.ops}>Oops!</div>
+        <div className={styles.error}>Error happaned</div>
+        <div className={styles.errorText}>{error}</div>
+      </div>
     </div>
   );
 };

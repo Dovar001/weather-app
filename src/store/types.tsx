@@ -48,6 +48,7 @@ export interface IWeatherData {
   city: {
     id: number;
     name: string;
+    population: number;
     coord: {
       lat: number;
       lon: number;
